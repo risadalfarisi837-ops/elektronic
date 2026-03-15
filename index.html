@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ricoh Electronic | Premium Experience</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        :root {
+            --gold: #d4af37;
+            --dark-blue: #0a192f;
+            --bg-light: #f4f6f9;
+            --premium-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Poppins', sans-serif; background: var(--bg-light); padding-top: 85px; overflow-x: hidden; }
+
+        /* --- NAV & DROPDOWN --- */
+        nav {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(15px);
+            padding: 10px 6%;
+            display: flex; justify-content: space-between; align-items: center;
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+        }
+        .logo div:first-child { font-size: 1.2rem; font-weight: 800; color: var(--dark-blue); letter-spacing: 1px; }
+        .logo div:last-child { font-size: 0.65rem; font-weight: 700; color: var(--gold); letter-spacing: 4px; }
+
+        .menu-dots { font-size: 1.4rem; color: var(--dark-blue); cursor: pointer; transition: 0.3s; }
+        .menu-dots:active { transform: scale(0.8) rotate(90deg); }
+
+        /* --- PROMO TEXT --- */
+        .promo-bar {
+            background: var(--dark-blue); color: white; padding: 8px 0;
+            font-size: 0.75rem; overflow: hidden; position: fixed; top: 60px; width: 100%; z-index: 999;
+            border-bottom: 2px solid var(--gold);
+        }
+        .marquee { display: inline-block; white-space: nowrap; animation: marquee 20s linear infinite; font-weight: 600; }
+        @keyframes marquee { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+        /* --- HERO DENGAN ZOOM ANIMATION --- */
+        .hero {
+            position: relative; height: 35vh; background: #000; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .hero-bg { 
+            position: absolute; width: 100%; height: 100%; object-fit: cover; opacity: 0.6;
+            animation: kenburns 20s infinite alternate;
+        }
+        @keyframes kenburns { 0% { transform: scale(1); } 100% { transform: scale(1.3); } }
+        
+        .hero-content { position: relative; z-index: 10; color: white; text-align: center; }
+        .hero h1 { 
+            font-family: 'Montserrat'; font-size: 1.8rem; 
+            text-shadow: 0 0 20px rgba(212, 175, 55, 0.5);
+            background: linear-gradient(to right, #fff, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* --- TOOLBAR LUXURY --- */
+        .toolbar {
+            max-width: 92%; margin: -35px auto 25px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 20px; border-radius: 20px;
+            box-shadow: var(--premium-shadow); position: relative; z-index: 20;
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+        .search-box { position: relative; margin-bottom: 15px; }
+        .search-box input {
+            width: 100%; padding: 12px 45px; border-radius: 15px;
+            border: 1px solid #eee; outline: none; background: #fff;
+            transition: 0.3s;
+        }
+        .search-box input:focus { border-color: var(--gold); box-shadow: 0 0 10px rgba(212,175,55,0.2); }
+        .search-box i { position: absolute; left: 18px; top: 15px; color: var(--gold); }
+
+        .cat-scroll { display: flex; gap: 10px; overflow-x: auto; padding-bottom: 5px; scrollbar-width: none; }
+        .cat-item {
+            padding: 8px 20px; background: #fff; border-radius: 25px;
+            white-space: nowrap; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05); transition: 0.3s;
+        }
+        .cat-item.active { background: var(--dark-blue); color: white; transform: scale(1.05); }
+
+        /* --- PRODUCT CARDS DENGAN EFEK HOVER --- */
+        .container { padding: 0 15px 50px; }
+        .product-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; }
+        
+        .card { 
+            background: white; border-radius: 20px; overflow: hidden; 
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid transparent;
+        }
+        .card:active { transform: scale(0.95); }
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
+
+        .img-h { height: 160px; width: 100%; overflow: hidden; position: relative; }
+        .img-h img { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
+        .card:hover .img-h img { transform: scale(1.1); }
+
+        /* Badge Efek */
+        .badge {
+            position: absolute; top: 10px; left: 10px; background: var(--gold);
+            color: white; font-size: 0.6rem; font-weight: 800; padding: 4px 10px;
+            border-radius: 10px; z-index: 5; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .p-info { padding: 12px; }
+        .p-cat { font-size: 0.65rem; color: var(--gold); font-weight: 700; text-transform: uppercase; }
+        .p-name { font-size: 0.85rem; font-weight: 700; height: 38px; margin: 5px 0; overflow: hidden; color: var(--dark-blue); }
+        .p-price { font-size: 1rem; color: #27ae60; font-weight: 800; }
+
+        .btn-wa { 
+            display: block; background: linear-gradient(45deg, var(--dark-blue), #1a3a5f); 
+            color: white; text-align: center; padding: 12px; text-decoration: none; 
+            font-size: 0.8rem; font-weight: 700; transition: 0.3s;
+        }
+        .btn-wa:active { opacity: 0.8; letter-spacing: 1px; }
+
+        /* --- DROPDOWN --- */
+        .dropdown-menu {
+            display: none; position: absolute; right: 0; top: 45px;
+            background: white; min-width: 180px; border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2); z-index: 1100; overflow: hidden;
+        }
+        .dropdown-menu a {
+            display: block; padding: 15px; color: var(--dark-blue);
+            text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid #f5f5f5;
+            transition: 0.3s;
+        }
+        .dropdown-menu a:hover { background: #fdf8e6; color: var(--gold); padding-left: 20px; }
+        .show { display: block !important; animation: slideIn 0.3s forwards; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo"><div>RICOH</div><div>ELECTRONIC</div></div>
+        <div style="position: relative;">
+            <i class="fas fa-ellipsis-v menu-dots" id="mBtn"></i>
+            <div class="dropdown-menu" id="dMenu">
+                <a href="#"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Lokasi Toko</a>
+                <a href="#"><i class="fas fa-headset"></i> Layanan Servis</a>
+                <a href="#"><i class="fas fa-star"></i> Testimoni</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="promo-bar">
+        <div class="marquee">✨ SELAMAT DATANG DI RICOH ELECTRONIC ✨ HARGA TERBAIK UNTUK PRODUK PREMIUM ✨ KUNJUNGI TOKO KAMI DAN DAPATKAN DISKON MENARIK! ✨</div>
+    </div>
+
+    <section class="hero">
+        <img src="https://images.unsplash.com/photo-1498049794561-7780e7231661?q=80&w=2070&auto=format&fit=crop" class="hero-bg">
+        <div class="hero-content">
+            <h1 class="animate__animated animate__zoomIn">RICOH PREMIUM</h1>
+            <p style="font-size: 0.7rem; color: var(--gold); letter-spacing: 3px; font-weight: 700;">ELECTRONIC & SPAREPART</p>
+        </div>
+    </section>
+
+    <div class="toolbar">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" id="sInput" placeholder="Cari barang elektronik..." oninput="search()">
+        </div>
+        <div class="cat-scroll">
+            <div class="cat-item active" onclick="setFilter('All', this)">Semua</div>
+            <div class="cat-item" onclick="setFilter('Sparepart', this)">Sparepart</div>
+            <div class="cat-item" onclick="setFilter('Dapur', this)">Dapur</div>
+            <div class="cat-item" onclick="setFilter('Elektronik', this)">Elektronik</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="product-grid" id="pGrid"></div>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
+
+        // Menu Toggle
+        const mBtn = document.getElementById('mBtn');
+        const dMenu = document.getElementById('dMenu');
+        mBtn.onclick = (e) => { e.stopPropagation(); dMenu.classList.toggle('show'); };
+        window.onclick = () => { dMenu.classList.remove('show'); };
+
+        // Data Produk Mewah
+        const data = [
+            { cat: 'Sparepart', name: 'Baut & Mur Mesin Cuci', price: 'Tanya Stok', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482839430229135653/S2584a2ca46c940de8c0f0fbe522dad686.jpg_720x720q80.jpg?ex=69b86955&is=69b717d5&hm=b23a63e9ae20ab2d475082308bba41f6242a4cf1c684acf95da7a9029a541f1b&', badge: 'STOK BANYAK' },
+            { cat: 'Dapur', name: 'Blender Cosmos CB-190', price: 'Rp 255.000', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482839429872746566/CB190-b.jpg?ex=69b86955&is=69b717d5&hm=476b92a522ba922591c31d70601c1d063f5110bc464f7de5217cc89e09cd3108&', badge: 'BEST SELLER' },
+            { cat: 'Elektronik', name: 'Gas Elpiji 3Kg Full', price: 'Rp 22.000', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482839430791168222/1686036742893-zyro-image-7.jpg?ex=69b86956&is=69b717d6&hm=d4bfa1be189945fae8c72fa71058f642627f82c5ad1eeee36bed4692277ff4b3&', badge: 'READY' },
+            { cat: 'Sparepart', name: 'Dinamo Kipas Angin', price: 'Rp 145.000', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482839431647072319/mx_dinamo_mesin_kipas_angin_cosmos_universal_rrt_16_inch_-66x16-_full01_957490dc.jpg?ex=69b86956&is=69b717d6&hm=20e8448040ffd46581961491bd6f235f77d7a990be6dd415429659866c429485&', badge: 'ORIGINAL' },
+            { cat: 'Sparepart', name: 'Dinamo Mesin Cuci', price: 'Rp 75.000', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482839430522998945/brd-67115_dinamo-mesin-cuci-pencuci-150watt-aluminium-washing-machine-motor-dynamo_full01-4d1c3946.jpg?ex=69b86956&is=69b717d6&hm=051cef5aff0307a99811b15cfdad82e1c15e1929dde2cb8eed8666e677885d7c&', badge: 'DISKON' },
+            { cat: 'Dapur', name: 'Magic Com Miyako New', price: 'Rp 280.000', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482841373450178641/smc7047-hitam1.jpg?ex=69b86b25&is=69b719a5&hm=1d16dfe6967e5ea00201fcd9da680719c876820382065169269b4af933a3549b&', badge: 'HOT' },
+            { cat: 'Elektronik', name: 'Kipas Angin Berdiri 16"', price: 'Rp 195.000', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482841373164961812/Arashi-StandFan-AFS-1604-01.jpg?ex=69b86b25&is=69b719a5&hm=928a027441a9770ea3763fb00109b33dc52a6fef2f141e9bef560f3a29d3fe0b&', badge: 'TOP' },
+            { cat: 'Dapur', name: 'Kompor Gas 2 Tungku', price: 'Rp 320.000', img: 'https://cdn.discordapp.com/attachments/1473375833887604767/1482841373748101290/1om.png?ex=69b86b25&is=69b719a5&hm=3d8fc524d5d3571eb138f87041bf9cbd8469de2b2badc4c28f55284ef56d3499&', badge: 'BEST' }
+        ];
+
+        function render(items) {
+            const grid = document.getElementById('pGrid');
+            grid.innerHTML = items.map((p, index) => `
+                <div class="card" data-aos="fade-up" data-aos-delay="${index * 50}">
+                    <div class="img-h">
+                        <div class="badge">${p.badge}</div>
+                        <img src="${p.img}" onerror="this.src='https://via.placeholder.com/300x300?text=Ricoh'">
+                    </div>
+                    <div class="p-info">
+                        <div class="p-cat">${p.cat}</div>
+                        <div class="p-name">${p.name}</div>
+                        <div class="p-price">${p.price}</div>
+                    </div>
+                    <a href="https://wa.me/6281315059849?text=Halo Ricoh, saya tertarik: ${p.name}" class="btn-wa">BELI SEKARANG</a>
+                </div>
+            `).join('');
+        }
+
+        function search() {
+            const val = document.getElementById('sInput').value.toLowerCase();
+            render(data.filter(p => p.name.toLowerCase().includes(val)));
+        }
+
+        function setFilter(c, el) {
+            document.querySelectorAll('.cat-item').forEach(i => i.classList.remove('active'));
+            el.classList.add('active');
+            render(c === 'All' ? data : data.filter(p => p.cat === c));
+        }
+
+        render(data);
+    </script>
+</body>
+</html>
